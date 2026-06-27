@@ -65,21 +65,3 @@ while True:
             "content": assistant_response
         }
     )
-
-
-@app.post("/chat")
-def chat(request: ChatRequest):
-    response = client.chat.completions.create(
-        messages = [
-            {
-                "role": "user",
-                "content": request.message
-            }
-        ],
-        temperature=request.temperature,
-        model=request.model
-    )
-    ans = response.choices[0].message.content
-    return {
-        "answer":ans
-    }
